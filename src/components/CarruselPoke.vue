@@ -31,7 +31,7 @@
         </div>
       </template>
       <template #body>
-        <!-- Use the PokemonDetails component here -->
+       
         <div class="text-white font-bold text-xl">
           <ul>
             <li>
