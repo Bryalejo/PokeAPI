@@ -43,10 +43,8 @@
             </li>
             <li
               v-if="
-                selectedPokemon &&
-                selectedPokemon.additionalInfo &&
-                selectedPokemon.additionalInfo.color &&
-                selectedPokemon.additionalInfo.color.name
+                selectedPokemon?.additionalInfo?.
+                color?.name
               "
             >
               Color: {{ selectedPokemon.additionalInfo.color.name }}
@@ -54,11 +52,7 @@
             <li v-else>Color: No se encontró información de color.</li>
             <li
               v-if="
-                selectedPokemon &&
-                selectedPokemon.additionalInfo &&
-                selectedPokemon.additionalInfo.eggGroups &&
-                selectedPokemon.additionalInfo.eggGroups[0] &&
-                selectedPokemon.additionalInfo.eggGroups[0].name" 
+                selectedPokemon?.additionalInfo?.eggGroups?.[0]?.name" 
             >
               Especie:{{ selectedPokemon.additionalInfo.eggGroups[0].name }}
              
@@ -66,12 +60,8 @@
             <li v-else>Tipo: null</li>
             <li
               v-if="
-                selectedPokemon &&
-                selectedPokemon.additionalInfo &&
-                selectedPokemon.additionalInfo.eggGroups &&
-                selectedPokemon.additionalInfo.eggGroups[1] &&
-                selectedPokemon.additionalInfo.eggGroups[1].name 
-              "
+                selectedPokemon?.additionalInfo?.eggGroups?.[1]?.name"
+              
             >
               
               Tipo: {{ selectedPokemon.additionalInfo.eggGroups[1].name  }}
@@ -80,16 +70,13 @@
 
             <li
               v-if="
-                selectedPokemon &&
-                selectedPokemon.additionalInfo &&
-                selectedPokemon.additionalInfo.evolvesFromSpecies &&
-                selectedPokemon.additionalInfo.evolvesFromSpecies.name
+                selectedPokemon?.additionalInfo?.evolvesFromSpecies?.name
               "
             >
               Pokemon pre-evolucion:
               {{ selectedPokemon.additionalInfo.evolvesFromSpecies.name }}
             </li>
-            <li v-else>Evolucion: Pokemon primario</li>
+            <li v-else>Evolucion: null</li>
           </ul>
         </div>
       </template>
@@ -124,7 +111,7 @@ export default {
         .then(async (response) => {
           const pokemonSpeciesList = response.data.results;
 
-        
+          // Realizar solicitudes adicionales para obtener información adicional
           const promises = pokemonSpeciesList.map(async (pokemon) => {
             const response = await axios.get(pokemon.url);
             const additionalInfo = {
@@ -140,7 +127,7 @@ export default {
             };
           });
 
-         
+          // Esperar a que se completen todas las solicitudes adicionales
           const pokemonListWithInfo = await Promise.all(promises);
           pokemonList.value = pokemonListWithInfo;
         })
