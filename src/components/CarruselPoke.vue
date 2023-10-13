@@ -12,7 +12,7 @@
       <swiper-slide v-for="pokemon in pokemonList" :key="pokemon.name">
         <img src="/imgs/pokemon1.png" alt="" class="py-5 w-full" />
         <div class="ml-5">
-          Nombre: <span class="">{{ pokemon.name }}</span> <br />
+          NOMBRE: <span class="">{{ pokemon.name }}</span> <br />
           <button
             @click="showPokemonDetails(pokemon)"
             class="bg-red-500 shadow-lg transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-yellow-500 duration-300 text-white shadow-red-500/50 rounded-md px-2 outline outline-offset-2 outline-red-600 my-5"
