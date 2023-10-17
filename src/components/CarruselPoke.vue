@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h1 class="text-5xl text-center">Carrusel de Pokémon</h1>
+    <h1 class="text-5xl text-center text-white">Carrusel de Pokémon</h1>
     <swiper
       :slidesPerView="3"
       :spaceBetween="30"
@@ -11,8 +11,8 @@
     >
       <swiper-slide v-for="pokemon in pokemonList" :key="pokemon.name">
         <img src="/imgs/pokemon1.png" alt="" class="py-5 w-full" />
-        <div class="ml-5">
-          Nombre: <span class="">{{ pokemon.name }}</span> <br />
+        <div class="ml-5 text-white uppercase">
+          NOMBRE: <span class="">{{ pokemon.name }}</span> <br />
           <button
             @click="showPokemonDetails(pokemon)"
             class="bg-red-500 shadow-lg transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-yellow-500 duration-300 text-white shadow-red-500/50 rounded-md px-2 outline outline-offset-2 outline-red-600 my-5"
@@ -31,7 +31,6 @@
         </div>
       </template>
       <template #body>
-       
         <div class="text-white font-bold text-xl">
           <ul>
             <li>
@@ -41,42 +40,26 @@
             <li>
               Tasa de Captura: {{ selectedPokemon.additionalInfo.captureRate }}
             </li>
-            <li
-              v-if="
-                selectedPokemon?.additionalInfo?.
-                color?.name
-              "
-            >
+            <li v-if="selectedPokemon?.additionalInfo?.color?.name">
               Color: {{ selectedPokemon.additionalInfo.color.name }}
             </li>
             <li v-else>Color: No se encontró información de color.</li>
-            <li
-              v-if="
-                selectedPokemon?.additionalInfo?.eggGroups?.[0]?.name" 
-            >
+            <li v-if="selectedPokemon?.additionalInfo?.eggGroups?.[0]?.name">
               Especie:{{ selectedPokemon.additionalInfo.eggGroups[0].name }}
-             
             </li>
             <li v-else>Tipo: null</li>
-            <li
-              v-if="
-                selectedPokemon?.additionalInfo?.eggGroups?.[1]?.name"
-              
-            >
-              
-              Tipo: {{ selectedPokemon.additionalInfo.eggGroups[1].name  }}
+            <li v-if="selectedPokemon?.additionalInfo?.eggGroups?.[1]?.name">
+              Tipo: {{ selectedPokemon.additionalInfo.eggGroups[1].name }}
             </li>
             <li v-else>Tipo: null</li>
 
             <li
-              v-if="
-                selectedPokemon?.additionalInfo?.evolvesFromSpecies?.name
-              "
+              v-if="selectedPokemon?.additionalInfo?.evolvesFromSpecies?.name"
             >
-              Pokemon pre-evolucion:
+              Pre-evolucion:
               {{ selectedPokemon.additionalInfo.evolvesFromSpecies.name }}
             </li>
-            <li v-else>Evolucion: null</li>
+            <li v-else>Pre-Evolucion: null</li>
           </ul>
         </div>
       </template>
